@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Svara AI — Belajar Bareng Real-Time</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="svara.css">
+</head>
+<body>
+
+<div class="noise"></div>
+
+<!-- ==================== HALAMAN HOME ==================== -->
+<div id="page-home" class="page active">
+    <div class="home-wrap">
+        <div class="home-badge">⚡ SVARA AI</div>
+        <h1 class="home-title">Belajar Bareng,<br><span class="accent">Real-Time.</span></h1>
+        <p class="home-sub">Sesi Pomodoro 25 menit · Video Call · Kuis Otomatis · Rangkuman AI</p>
+        <div class="home-features">
+            <div class="hf-item"><span class="hf-icon">⏱️</span><span>Pomodoro Timer</span></div>
+            <div class="hf-item"><span class="hf-icon">📹</span><span>Video Call HD</span></div>
+            <div class="hf-item"><span class="hf-icon">📝</span><span>Kuis Otomatis</span></div>
+            <div class="hf-item"><span class="hf-icon">🤖</span><span>Rangkuman AI</span></div>
+        </div>
+        <button id="btn-start" class="btn-main">Mulai Sesi Belajar →</button>
+        <p class="home-note">Gratis · Tanpa login · Langsung jalan</p>
+    </div>
+    <div class="home-visual">
+        <div class="hv-circle c1"></div>
+        <div class="hv-circle c2"></div>
+        <div class="hv-circle c3"></div>
+        <div class="hv-card">
+            <div class="hvc-timer">24:37</div>
+            <div class="hvc-label">⏱ Sesi aktif</div>
+            <div class="hvc-users">
+                <div class="hvc-user">👤 Andi</div>
+                <div class="hvc-user active">👤 Sari</div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- ==================== HALAMAN SESSION ==================== -->
+<div id="page-session" class="page hidden">
+    <div class="panel">
+        <button class="back-btn" id="btn-back-home">← Kembali</button>
+        <div class="panel-icon">📋</div>
+        <h2 class="panel-title">Atur Sesi Belajar</h2>
+
+        <div class="field-group">
+            <label class="field-label">Nama Kamu</label>
+            <input type="text" id="username" class="field-input" placeholder="Contoh: Andi">
+        </div>
+
+        <div class="field-group">
+            <label class="field-label">Jumlah Peserta</label>
+            <div class="seg-ctrl">
+                <div class="seg active" data-val="1">Solo</div>
+                <div class="seg" data-val="2">Duo</div>
+            </div>
+            <p class="field-note" id="seg-note">Belajar sendiri dengan timer Pomodoro.</p>
+        </div>
+
+        <div class="field-group">
+            <label class="field-label">Durasi Belajar</label>
+            <input type="text" class="field-input disabled" value="⏱️ 25 menit (Pomodoro)" disabled>
+        </div>
+
+        <div class="field-group">
+            <label class="field-label">Topik Pembelajaran</label>
+            <textarea id="topic" class="field-input field-textarea" rows="3" placeholder="Contoh: Sistem Operasi, Jaringan Komputer, Algoritma..."></textarea>
+        </div>
+
+        <div class="info-banner">
+            💡 Setelah timer selesai, kamu akan mengerjakan kuis dan mendapat rangkuman otomatis dari AI.
+        </div>
+
+        <div class="btn-row">
+            <button id="btn-back-home2" class="btn-sec">← Kembali</button>
+            <button id="btn-join" class="btn-main">Masuk Room →</button>
+        </div>
+    </div>
+</div>
+
+
+<!-- ==================== HALAMAN ROOM ==================== -->
+<div id="page-room" class="page hidden">
+    <div class="room-layout">
+
+        <!-- Sidebar kiri -->
+        <aside class="room-sidebar">
+            <div class="rs-logo">⚡ Svara</div>
+            <div class="rs-topic">
+                <div class="rs-topic-label">Topik</div>
+                <div class="rs-topic-text" id="display-topic">—</div>
+            </div>
+            <div class="rs-timer-wrap">
+                <div class="rs-timer-label">⏱ Pomodoro</div>
+                <div id="timer" class="rs-timer">25:00</div>
+                <div class="rs-timer-bar-wrap">
+                    <div class="rs-timer-bar" id="timer-bar"></div>
+                </div>
+                <div class="rs-timer-note">Fokus sampai timer selesai!</div>
+            </div>
+            <div class="rs-controls">
+                <button class="ctrl-btn" id="btn-toggle-cam" title="Kamera">📹</button>
+                <button class="ctrl-btn" id="btn-toggle-mic" title="Mikrofon">🎙️</button>
+                <button class="ctrl-btn danger" id="btn-finish" title="Selesai">✅</button>
+            </div>
+            <div class="rs-status" id="room-status">Menghubungkan...</div>
+        </aside>
+
+        <!-- Area video -->
+        <main class="room-main">
+            <div class="video-grid" id="video-grid">
+                <!-- Video lokal -->
+                <div class="video-tile" id="local-tile">
+                    <div class="video-box" id="local-video">
+                        <div class="video-placeholder">
+                            <div class="vp-avatar" id="local-avatar">?</div>
+                            <div class="vp-name" id="local-name">Kamu</div>
+                        </div>
+                    </div>
+                    <div class="video-label">
+                        <span id="local-label-name">Kamu</span>
+                        <span class="vl-badge you">Kamu</span>
+                    </div>
+                </div>
+                <!-- Remote video slot -->
+                <div class="video-tile hidden" id="remote-tile">
+                    <div class="video-box" id="remote-video">
+                        <div class="video-placeholder">
+                            <div class="vp-avatar" id="remote-avatar">?</div>
+                            <div class="vp-name" id="remote-name">Menunggu...</div>
+                        </div>
+                    </div>
+                    <div class="video-label">
+                        <span id="remote-label-name">User Lain</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Waiting state -->
+            <div class="waiting-banner" id="waiting-banner">
+                <div class="wb-pulse"></div>
+                <span>Menunggu peserta lain masuk room...</span>
+            </div>
+        </main>
+    </div>
+</div>
+
+
+<!-- ==================== HALAMAN QUIZ ==================== -->
+<div id="page-quiz" class="page hidden">
+    <div class="panel">
+        <div class="panel-icon">📝</div>
+        <h2 class="panel-title">Kuis Evaluasi</h2>
+        <p class="panel-sub">Jawab pertanyaan berikut sesuai materi yang dipelajari tadi.</p>
+
+        <div class="quiz-meta">
+            <span class="qm-current">Soal <span id="q-num">1</span> dari <span id="q-total">5</span></span>
+            <span class="qm-score-live">Benar: <span id="q-correct">0</span></span>
+        </div>
+
+        <div class="progress-track">
+            <div class="progress-fill" id="quiz-progress"></div>
+        </div>
+
+        <div class="question-card" id="question-card">
+            <p class="q-text" id="q-text">Memuat soal...</p>
+            <div class="options" id="options-list"></div>
+        </div>
+
+        <div class="btn-row" style="margin-top:24px;">
+            <button id="btn-next" class="btn-main" disabled>Lanjut →</button>
+        </div>
+
+        <div id="quiz-loading" class="quiz-loading">
+            <div class="ql-spinner"></div>
+            <span>AI sedang membuat soal...</span>
+        </div>
+    </div>
+</div>
+
+
+<!-- ==================== HALAMAN RESULT ==================== -->
+<div id="page-result" class="page hidden">
+    <div class="panel">
+        <div class="result-trophy">🏆</div>
+        <h2 class="panel-title">Hasil Evaluasi</h2>
+
+        <div class="score-ring-wrap">
+            <svg class="score-ring" viewBox="0 0 120 120">
+                <circle class="sr-bg" cx="60" cy="60" r="52"/>
+                <circle class="sr-fill" id="score-circle" cx="60" cy="60" r="52"
+                    stroke-dasharray="326.7" stroke-dashoffset="326.7"/>
+            </svg>
+            <div class="score-inner">
+                <div class="score-num" id="score-num">0</div>
+                <div class="score-of">/ 100</div>
+            </div>
+        </div>
+
+        <p class="score-msg" id="score-msg">—</p>
+
+        <div class="result-stats">
+            <div class="rs-stat">
+                <div class="rs-stat-val" id="stat-benar">0</div>
+                <div class="rs-stat-label">Benar</div>
+            </div>
+            <div class="rs-stat">
+                <div class="rs-stat-val" id="stat-salah">0</div>
+                <div class="rs-stat-label">Salah</div>
+            </div>
+            <div class="rs-stat">
+                <div class="rs-stat-val" id="stat-total">0</div>
+                <div class="rs-stat-label">Total Soal</div>
+            </div>
+        </div>
+
+        <div class="rangkuman-box" id="rangkuman-box">
+            <div class="rb-title">📄 Rangkuman AI</div>
+            <div class="rb-content" id="rangkuman-text">Memuat rangkuman...</div>
+        </div>
+
+        <div class="btn-row">
+            <button id="btn-download" class="btn-sec">⬇ Download Rangkuman</button>
+            <button id="btn-restart" class="btn-main">🔄 Mulai Lagi</button>
+        </div>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/livekit-client/dist/livekit-client.umd.min.js"></script>
+<script src="svara.js"></script>
+</body>
+</html>
