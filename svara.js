@@ -177,7 +177,7 @@ async function connectLiveKit() {
 
     try {
       const res = await fetch(
-    `https://ozone-reroute-sublet.ngrok-free.dev/getToken?room=svara-room&username=${encodeURIComponent(state.username)}`,
+    `https://svaraai-production-b7a0.up.railway.app/getToken?room=svara-room&username=${encodeURIComponent(state.username)}`,
     { headers: { 'ngrok-skip-browser-warning': 'true' } }
 );
 if (!res.ok) throw new Error('Gagal ambil token dari server');
