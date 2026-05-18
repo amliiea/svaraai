@@ -25,7 +25,10 @@
             <div class="hf-item"><span class="hf-icon">📝</span><span>Kuis Otomatis</span></div>
             <div class="hf-item"><span class="hf-icon">🤖</span><span>Rangkuman AI</span></div>
         </div>
-        <button id="btn-start" class="btn-main">Mulai Sesi Belajar →</button>
+        <div class="home-btns">
+            <button id="btn-start" class="btn-main">Buat Room Baru →</button>
+            <button id="btn-join-room" class="btn-sec">Masuk dengan Kode</button>
+        </div>
         <p class="home-note">Gratis · Tanpa login · Langsung jalan</p>
     </div>
     <div class="home-visual">
@@ -44,12 +47,35 @@
 </div>
 
 
+<!-- ==================== HALAMAN JOIN DENGAN KODE ==================== -->
+<div id="page-join" class="page hidden">
+    <div class="panel">
+        <button class="back-btn" id="btn-back-join">← Kembali</button>
+        <div class="panel-icon">🔑</div>
+        <h2 class="panel-title">Masuk Room</h2>
+        <p class="panel-sub">Minta kode room dari temanmu yang sudah membuat sesi.</p>
+
+        <div class="field-group">
+            <label class="field-label">Nama Kamu</label>
+            <input type="text" id="join-username" class="field-input" placeholder="Contoh: Sari">
+        </div>
+
+        <div class="field-group">
+            <label class="field-label">Kode Room</label>
+            <input type="text" id="join-code" class="field-input code-input" placeholder="Contoh: SVR-482" maxlength="7">
+        </div>
+
+        <button id="btn-do-join" class="btn-main">Masuk Room →</button>
+    </div>
+</div>
+
+
 <!-- ==================== HALAMAN SESSION ==================== -->
 <div id="page-session" class="page hidden">
     <div class="panel">
         <button class="back-btn" id="btn-back-home">← Kembali</button>
         <div class="panel-icon">📋</div>
-        <h2 class="panel-title">Atur Sesi Belajar</h2>
+        <h2 class="panel-title">Buat Sesi Belajar</h2>
 
         <div class="field-group">
             <label class="field-label">Nama Kamu</label>
@@ -76,13 +102,36 @@
         </div>
 
         <div class="info-banner">
-            💡 Setelah timer selesai, kamu akan mengerjakan kuis dan mendapat rangkuman otomatis dari AI.
+            💡 Setelah kamu buat room, kamu akan dapat <strong>kode unik</strong> untuk dibagikan ke teman.
         </div>
 
         <div class="btn-row">
             <button id="btn-back-home2" class="btn-sec">← Kembali</button>
-            <button id="btn-join" class="btn-main">Masuk Room →</button>
+            <button id="btn-join" class="btn-main">Buat Room →</button>
         </div>
+    </div>
+</div>
+
+
+<!-- ==================== HALAMAN KODE ROOM ==================== -->
+<div id="page-code" class="page hidden">
+    <div class="panel" style="text-align:center;">
+        <div class="panel-icon">🎉</div>
+        <h2 class="panel-title">Room Siap!</h2>
+        <p class="panel-sub">Bagikan kode ini ke temanmu. Mereka tinggal klik "Masuk dengan Kode" di halaman utama.</p>
+
+        <div class="room-code-display">
+            <div class="rcd-label">Kode Room Kamu</div>
+            <div class="rcd-code" id="display-room-code">SVR-000</div>
+            <button class="rcd-copy" id="btn-copy-code">📋 Salin Kode</button>
+        </div>
+
+        <div class="room-code-info">
+            <div class="rci-item">📚 <span id="code-topic-display">—</span></div>
+            <div class="rci-item">⏱️ 25 menit Pomodoro</div>
+        </div>
+
+        <button id="btn-enter-room" class="btn-main" style="margin-top:24px;">Masuk Room Sekarang →</button>
     </div>
 </div>
 
@@ -91,12 +140,15 @@
 <div id="page-room" class="page hidden">
     <div class="room-layout">
 
-        <!-- Sidebar kiri -->
         <aside class="room-sidebar">
             <div class="rs-logo">⚡ Svara</div>
             <div class="rs-topic">
                 <div class="rs-topic-label">Topik</div>
                 <div class="rs-topic-text" id="display-topic">—</div>
+            </div>
+            <div class="rs-room-code">
+                <div class="rs-topic-label">Kode Room</div>
+                <div class="rs-code-val" id="sidebar-room-code">—</div>
             </div>
             <div class="rs-timer-wrap">
                 <div class="rs-timer-label">⏱ Pomodoro</div>
@@ -114,10 +166,8 @@
             <div class="rs-status" id="room-status">Menghubungkan...</div>
         </aside>
 
-        <!-- Area video -->
         <main class="room-main">
             <div class="video-grid" id="video-grid">
-                <!-- Video lokal -->
                 <div class="video-tile" id="local-tile">
                     <div class="video-box" id="local-video">
                         <div class="video-placeholder">
@@ -130,7 +180,6 @@
                         <span class="vl-badge you">Kamu</span>
                     </div>
                 </div>
-                <!-- Remote video slot -->
                 <div class="video-tile hidden" id="remote-tile">
                     <div class="video-box" id="remote-video">
                         <div class="video-placeholder">
@@ -143,8 +192,6 @@
                     </div>
                 </div>
             </div>
-
-            <!-- Waiting state -->
             <div class="waiting-banner" id="waiting-banner">
                 <div class="wb-pulse"></div>
                 <span>Menunggu peserta lain masuk room...</span>
