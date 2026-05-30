@@ -3,85 +3,58 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Svara AI — Belajar Bareng Real-Time</title>
+    <title>Svara AI</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="svara.css">
 </head>
 <body>
-
 <div class="noise"></div>
-
-<!-- ==================== HALAMAN HOME ==================== -->
+<!-- HOME -->
 <div id="page-home" class="page active">
     <div class="home-wrap">
-        <div class="home-badge">⚡ SVARA AI</div>
+        <div class="home-badge">SVARA AI</div>
         <h1 class="home-title">Belajar Bareng,<br><span class="accent">Real-Time.</span></h1>
         <p class="home-sub">Sesi Pomodoro 25 menit · Video Call · Kuis Otomatis · Rangkuman AI</p>
         <div class="home-features">
-            <div class="hf-item"><span class="hf-icon">⏱️</span><span>Pomodoro Timer</span></div>
-            <div class="hf-item"><span class="hf-icon">📹</span><span>Video Call HD</span></div>
-            <div class="hf-item"><span class="hf-icon">📝</span><span>Kuis Otomatis</span></div>
-            <div class="hf-item"><span class="hf-icon">🤖</span><span>Rangkuman AI</span></div>
+            <div class="hf-item">Pomodoro Timer</div>
+            <div class="hf-item">Video Call HD</div>
+            <div class="hf-item">Kuis Otomatis</div>
+            <div class="hf-item">Rangkuman AI</div>
         </div>
         <div class="home-btns">
-            <button id="btn-start" class="btn-main">Buat Room Baru →</button>
+            <button id="btn-start" class="btn-main">Buat Room Baru</button>
             <button id="btn-join-room" class="btn-sec">Masuk dengan Kode</button>
-        </div>
-        <p class="home-note">Gratis · Tanpa login · Langsung jalan</p>
-    </div>
-    <div class="home-visual">
-        <div class="hv-circle c1"></div>
-        <div class="hv-circle c2"></div>
-        <div class="hv-circle c3"></div>
-        <div class="hv-card">
-            <div class="hvc-timer">24:37</div>
-            <div class="hvc-label">⏱ Sesi aktif</div>
-            <div class="hvc-users">
-                <div class="hvc-user">👤 Andi</div>
-                <div class="hvc-user active">👤 Sari</div>
-            </div>
         </div>
     </div>
 </div>
-
-
-<!-- ==================== HALAMAN JOIN DENGAN KODE ==================== -->
+<!-- JOIN DENGAN KODE -->
 <div id="page-join" class="page hidden">
     <div class="panel">
-        <button class="back-btn" id="btn-back-join">← Kembali</button>
-        <div class="panel-icon">🔑</div>
+        <button class="back-btn" id="btn-back-join">Kembali</button>
         <h2 class="panel-title">Masuk Room</h2>
         <p class="panel-sub">Minta kode room dari temanmu yang sudah membuat sesi.</p>
-
         <div class="field-group">
             <label class="field-label">Nama Kamu</label>
             <input type="text" id="join-username" class="field-input" placeholder="Contoh: Sari">
         </div>
-
         <div class="field-group">
             <label class="field-label">Kode Room</label>
             <input type="text" id="join-code" class="field-input code-input" placeholder="Contoh: SVR-482" maxlength="7">
         </div>
-
-        <button id="btn-do-join" class="btn-main">Masuk Room →</button>
+        <button id="btn-do-join" class="btn-main">Masuk Room</button>
     </div>
 </div>
-
-
-<!-- ==================== HALAMAN SESSION ==================== -->
+<!-- SESSION -->
 <div id="page-session" class="page hidden">
     <div class="panel">
-        <button class="back-btn" id="btn-back-home">← Kembali</button>
-        <div class="panel-icon">📋</div>
+        <button class="back-btn" id="btn-back-home">Kembali</button>
         <h2 class="panel-title">Buat Sesi Belajar</h2>
-
         <div class="field-group">
             <label class="field-label">Nama Kamu</label>
             <input type="text" id="username" class="field-input" placeholder="Contoh: Andi">
         </div>
-
         <div class="field-group">
             <label class="field-label">Jumlah Peserta</label>
             <div class="seg-ctrl">
@@ -90,58 +63,45 @@
             </div>
             <p class="field-note" id="seg-note">Belajar sendiri dengan timer Pomodoro.</p>
         </div>
-
         <div class="field-group">
             <label class="field-label">Durasi Belajar</label>
-            <input type="text" class="field-input disabled" value="⏱️ 25 menit (Pomodoro)" disabled>
+            <input type="text" class="field-input disabled" value="25 menit (Pomodoro)" disabled>
         </div>
-
         <div class="field-group">
             <label class="field-label">Topik Pembelajaran</label>
-            <textarea id="topic" class="field-input field-textarea" rows="3" placeholder="Contoh: Sistem Operasi, Jaringan Komputer, Algoritma..."></textarea>
+            <textarea id="topic" class="field-input field-textarea" rows="3" placeholder="Contoh: Sistem Operasi, Jaringan Komputer..."></textarea>
         </div>
-
         <div class="info-banner">
-            💡 Setelah kamu buat room, kamu akan dapat <strong>kode unik</strong> untuk dibagikan ke teman.
+            Setelah kamu buat room, kamu akan dapat <strong>kode unik</strong> untuk dibagikan ke teman.
         </div>
-
         <div class="btn-row">
-            <button id="btn-back-home2" class="btn-sec">← Kembali</button>
-            <button id="btn-join" class="btn-main">Buat Room →</button>
+            <button id="btn-back-home2" class="btn-sec">Kembali</button>
+            <button id="btn-join" class="btn-main">Buat Room</button>
         </div>
     </div>
 </div>
-
-
-<!-- ==================== HALAMAN KODE ROOM ==================== -->
+<!-- KODE ROOM -->
 <div id="page-code" class="page hidden">
     <div class="panel" style="text-align:center;">
-        <div class="panel-icon">🎉</div>
         <h2 class="panel-title">Room Siap!</h2>
         <p class="panel-sub">Bagikan kode ini ke temanmu. Mereka tinggal klik "Masuk dengan Kode" di halaman utama.</p>
-
         <div class="room-code-display">
             <div class="rcd-label">Kode Room Kamu</div>
             <div class="rcd-code" id="display-room-code">SVR-000</div>
-            <button class="rcd-copy" id="btn-copy-code">📋 Salin Kode</button>
+            <button class="rcd-copy" id="btn-copy-code">Salin Kode</button>
         </div>
-
         <div class="room-code-info">
-            <div class="rci-item">📚 <span id="code-topic-display">—</span></div>
-            <div class="rci-item">⏱️ 25 menit Pomodoro</div>
+            <div class="rci-item"><span id="code-topic-display">—</span></div>
+            <div class="rci-item">25 menit Pomodoro</div>
         </div>
-
-        <button id="btn-enter-room" class="btn-main" style="margin-top:24px;">Masuk Room Sekarang →</button>
+        <button id="btn-enter-room" class="btn-main" style="margin-top:24px;">Masuk Room Sekarang</button>
     </div>
 </div>
-
-
-<!-- ==================== HALAMAN ROOM ==================== -->
+<!-- ROOM -->
 <div id="page-room" class="page hidden">
     <div class="room-layout">
-
         <aside class="room-sidebar">
-            <div class="rs-logo">⚡ Svara</div>
+            <div class="rs-logo">Svara AI</div>
             <div class="rs-topic">
                 <div class="rs-topic-label">Topik</div>
                 <div class="rs-topic-text" id="display-topic">—</div>
@@ -151,7 +111,7 @@
                 <div class="rs-code-val" id="sidebar-room-code">—</div>
             </div>
             <div class="rs-timer-wrap">
-                <div class="rs-timer-label">⏱ Pomodoro</div>
+                <div class="rs-timer-label">Pomodoro</div>
                 <div id="timer" class="rs-timer">25:00</div>
                 <div class="rs-timer-bar-wrap">
                     <div class="rs-timer-bar" id="timer-bar"></div>
@@ -159,20 +119,19 @@
                 <div class="rs-timer-note">Fokus sampai timer selesai!</div>
             </div>
             <div class="rs-controls">
-                <button class="ctrl-btn" id="btn-toggle-cam" title="Kamera">📹</button>
-                <button class="ctrl-btn" id="btn-toggle-mic" title="Mikrofon">🎙️</button>
-                <button class="ctrl-btn danger" id="btn-finish" title="Selesai">✅</button>
+                <button class="ctrl-btn" id="btn-toggle-cam">Kamera</button>
+                <button class="ctrl-btn" id="btn-toggle-mic">Mikrofon</button>
+                <button class="ctrl-btn danger" id="btn-finish">Selesai</button>
             </div>
             <div class="rs-status" id="room-status">Menghubungkan...</div>
         </aside>
-
         <main class="room-main">
             <div class="video-grid" id="video-grid">
                 <div class="video-tile" id="local-tile">
                     <div class="video-box" id="local-video">
                         <div class="video-placeholder">
                             <div class="vp-avatar" id="local-avatar">?</div>
-                            <div class="vp-name" id="local-name">Kamu</div>
+                            <div class="vp-name">Kamu</div>
                         </div>
                     </div>
                     <div class="video-label">
@@ -184,7 +143,7 @@
                     <div class="video-box" id="remote-video">
                         <div class="video-placeholder">
                             <div class="vp-avatar" id="remote-avatar">?</div>
-                            <div class="vp-name" id="remote-name">Menunggu...</div>
+                            <div class="vp-name">Menunggu...</div>
                         </div>
                     </div>
                     <div class="video-label">
@@ -199,47 +158,35 @@
         </main>
     </div>
 </div>
-
-
-<!-- ==================== HALAMAN QUIZ ==================== -->
+<!-- QUIZ -->
 <div id="page-quiz" class="page hidden">
     <div class="panel">
-        <div class="panel-icon">📝</div>
         <h2 class="panel-title">Kuis Evaluasi</h2>
-        <p class="panel-sub">Jawab pertanyaan berikut sesuai materi yang dipelajari tadi.</p>
-
+        <p class="panel-sub">Jawab pertanyaan berikut sesuai materi yang dipelajari.</p>
         <div class="quiz-meta">
-            <span class="qm-current">Soal <span id="q-num">1</span> dari <span id="q-total">5</span></span>
+            <span>Soal <span id="q-num">1</span> dari <span id="q-total">5</span></span>
             <span class="qm-score-live">Benar: <span id="q-correct">0</span></span>
         </div>
-
         <div class="progress-track">
             <div class="progress-fill" id="quiz-progress"></div>
         </div>
-
         <div class="question-card" id="question-card">
             <p class="q-text" id="q-text">Memuat soal...</p>
             <div class="options" id="options-list"></div>
         </div>
-
         <div class="btn-row" style="margin-top:24px;">
-            <button id="btn-next" class="btn-main" disabled>Lanjut →</button>
+            <button id="btn-next" class="btn-main" disabled>Lanjut</button>
         </div>
-
         <div id="quiz-loading" class="quiz-loading">
             <div class="ql-spinner"></div>
             <span>AI sedang membuat soal...</span>
         </div>
     </div>
 </div>
-
-
-<!-- ==================== HALAMAN RESULT ==================== -->
+<!-- RESULT -->
 <div id="page-result" class="page hidden">
     <div class="panel">
-        <div class="result-trophy">🏆</div>
         <h2 class="panel-title">Hasil Evaluasi</h2>
-
         <div class="score-ring-wrap">
             <svg class="score-ring" viewBox="0 0 120 120">
                 <circle class="sr-bg" cx="60" cy="60" r="52"/>
@@ -251,9 +198,7 @@
                 <div class="score-of">/ 100</div>
             </div>
         </div>
-
         <p class="score-msg" id="score-msg">—</p>
-
         <div class="result-stats">
             <div class="rs-stat">
                 <div class="rs-stat-val" id="stat-benar">0</div>
@@ -268,19 +213,16 @@
                 <div class="rs-stat-label">Total Soal</div>
             </div>
         </div>
-
-        <div class="rangkuman-box" id="rangkuman-box">
-            <div class="rb-title">📄 Rangkuman AI</div>
-            <div class="rb-content" id="rangkuman-text">Memuat rangkuman...</div>
-        </div>
-
+        <div class="rangkuman-box">
+             <div id="rangkuman-text">
+        AI sedang menyiapkan rangkuman...
+    </div>
+    
         <div class="btn-row">
-            <button id="btn-download" class="btn-sec">⬇ Download Rangkuman</button>
-            <button id="btn-restart" class="btn-main">🔄 Mulai Lagi</button>
+            <button id="btn-restart" class="btn-main">Mulai Lagi</button>
         </div>
     </div>
 </div>
-
 <script src="https://cdn.jsdelivr.net/npm/livekit-client/dist/livekit-client.umd.min.js"></script>
 <script src="svara.js"></script>
 </body>
